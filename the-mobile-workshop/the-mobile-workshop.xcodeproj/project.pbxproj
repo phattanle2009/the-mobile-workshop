@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		46E6CFD65EFD31E8A3BEC003 /* Pods_the_mobile_workshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E17854B7E7FC59F4D9B9DB /* Pods_the_mobile_workshop.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		00E17854B7E7FC59F4D9B9DB /* Pods_the_mobile_workshop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_the_mobile_workshop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B04C66FDE3013C1B87CB654 /* Pods-the-mobile-workshop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-the-mobile-workshop.debug.xcconfig"; path = "Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop.debug.xcconfig"; sourceTree = "<group>"; };
 		DBB3CE7D2F19F4010069073B /* the-mobile-workshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "the-mobile-workshop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3EAC62DDD3E538EC306E804 /* Pods-the-mobile-workshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-the-mobile-workshop.release.xcconfig"; path = "Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -21,6 +28,13 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DB2A41722F1DCF0B00395B22 /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DBB3CE7F2F19F4010069073B /* the-mobile-workshop */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -36,17 +50,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E6CFD65EFD31E8A3BEC003 /* Pods_the_mobile_workshop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B0DD67FBF1887565B1AF82B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B04C66FDE3013C1B87CB654 /* Pods-the-mobile-workshop.debug.xcconfig */,
+				F3EAC62DDD3E538EC306E804 /* Pods-the-mobile-workshop.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AE72F450DA812CE09CACF1A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00E17854B7E7FC59F4D9B9DB /* Pods_the_mobile_workshop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DBB3CE742F19F4010069073B = {
 			isa = PBXGroup;
 			children = (
+				DB2A41722F1DCF0B00395B22 /* Common */,
 				DBB3CE7F2F19F4010069073B /* the-mobile-workshop */,
 				DBB3CE7E2F19F4010069073B /* Products */,
+				0B0DD67FBF1887565B1AF82B /* Pods */,
+				AE72F450DA812CE09CACF1A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,20 +100,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBB3CE902F19F4030069073B /* Build configuration list for PBXNativeTarget "the-mobile-workshop" */;
 			buildPhases = (
+				8399B07077834C5181419393 /* [CP] Check Pods Manifest.lock */,
 				DBB3CE792F19F4010069073B /* Sources */,
 				DBB3CE7A2F19F4010069073B /* Frameworks */,
 				DBB3CE7B2F19F4010069073B /* Resources */,
+				0A6215282D7895E0992A67AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				DB2A41722F1DCF0B00395B22 /* Common */,
 				DBB3CE7F2F19F4010069073B /* the-mobile-workshop */,
 			);
 			name = "the-mobile-workshop";
-			packageProductDependencies = (
-			);
 			productName = "the-mobile-workshop";
 			productReference = DBB3CE7D2F19F4010069073B /* the-mobile-workshop.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +163,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A6215282D7895E0992A67AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8399B07077834C5181419393 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-the-mobile-workshop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DBB3CE792F19F4010069073B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,12 +218,13 @@
 /* Begin XCBuildConfiguration section */
 		DBB3CE912F19F4030069073B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B04C66FDE3013C1B87CB654 /* Pods-the-mobile-workshop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UW5XAXBD7B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "the-mobile-workshop/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -160,6 +239,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "phattanle2009.the-mobile-workshop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -172,12 +252,13 @@
 		};
 		DBB3CE922F19F4030069073B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3EAC62DDD3E538EC306E804 /* Pods-the-mobile-workshop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UW5XAXBD7B;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "the-mobile-workshop/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -192,6 +273,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "phattanle2009.the-mobile-workshop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
