@@ -1,0 +1,84 @@
+# ================================
+# macOS
+# ================================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ================================
+# Xcode
+# ================================
+## Build results
+build/
+DerivedData/
+
+## User-specific Xcode settings
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+## Xcode workspace
+*.xcworkspace
+
+## Xcode playgounds
+timeline.xctimeline
+playground.xcworkspace
+
+# ================================
+# Swift Package Manager
+# ================================
+.build/
+.swiftpm/
+Package.resolved
+
+# ================================
+# CocoaPods
+# ================================
+Pods/
+Podfile.lock
+
+# ================================
+# Carthage
+# ================================
+Carthage/Build/
+
+# ================================
+# Fastlane
+# ================================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# ================================
+# Code signing / certificates
+# ================================
+*.cer
+*.p12
+*.mobileprovision
+
+# ================================
+# Logs & temp files
+# ================================
+*.log
+*.tmp
+*.swp
+
+# ================================
+# Crash reports
+# ================================
+*.crash
+
+# ================================
+# Environment files
+# ================================
+.env
+.env.*
+
+# ================================
+# Misc
+# ================================
+*.xccheckout
+*.xcscmblueprint
