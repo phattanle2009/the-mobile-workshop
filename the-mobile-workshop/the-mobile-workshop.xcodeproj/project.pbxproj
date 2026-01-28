@@ -30,9 +30,12 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DB2A41722F1DCF0B00395B22 /* Common */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		DB8109242F1DEF0100A3F748 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DBB3CE7F2F19F4010069073B /* the-mobile-workshop */ = {
@@ -79,6 +82,7 @@
 			children = (
 				DB2A41722F1DCF0B00395B22 /* Common */,
 				DBB3CE7F2F19F4010069073B /* the-mobile-workshop */,
+				DB8109242F1DEF0100A3F748 /* Resources */,
 				DBB3CE7E2F19F4010069073B /* Products */,
 				0B0DD67FBF1887565B1AF82B /* Pods */,
 				AE72F450DA812CE09CACF1A4 /* Frameworks */,
@@ -112,6 +116,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				DB2A41722F1DCF0B00395B22 /* Common */,
+				DB8109242F1DEF0100A3F748 /* Resources */,
 				DBB3CE7F2F19F4010069073B /* the-mobile-workshop */,
 			);
 			name = "the-mobile-workshop";
@@ -172,9 +177,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -225,6 +234,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "the-mobile-workshop/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -259,6 +269,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "the-mobile-workshop/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -10,7 +10,7 @@ import UIKit
 extension UITableView {
     convenience init(
         tableStyle: UITableView.Style = .plain,
-        backgroundColor: UIColor = .white,
+        backgroundColor: UIColor = .clear,
         separator: UITableViewCell.SeparatorStyle = .none
     ) {
         self.init(frame: .zero, style: tableStyle)

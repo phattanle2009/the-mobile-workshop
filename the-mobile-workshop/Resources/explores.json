@@ -1,0 +1,36 @@
+{
+  "sections": [
+    {
+      "id": "layout",
+      "title": "Layout & Composition",
+      "description": "Auto Layout edge cases and layout techniques",
+      "items": [
+        {
+          "id": "dynamic_height_cell",
+          "title": "Dynamic Height Cell",
+          "description": "UITableViewCell with complex dynamic sizing",
+          "route": "Layout.DynamicHeightCell"
+        },
+        {
+          "id": "intrinsic_size",
+          "title": "Intrinsic Content Size",
+          "description": "Custom view overriding intrinsicContentSize",
+          "route": "Layout.IntrinsicSize"
+        }
+      ]
+    },
+    {
+      "id": "animations",
+      "title": "Animations & Transitions",
+      "description": "Advanced UIKit animations and transitions",
+      "items": [
+        {
+          "id": "interactive_dismiss",
+          "title": "Interactive Dismiss",
+          "description": "Percent-driven interactive dismissal",
+          "route": "Animations.InteractiveDismiss"
+        }
+      ]
+    }
+  ]
+}
