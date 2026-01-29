@@ -11,7 +11,8 @@ import UIKit
 final class ExploreRouter {
 
     private static let registry: [String: () -> UIViewController] = [
-        DynamicHeightCellViewController.route: DynamicHeightCellViewController.makeViewController
+        DynamicHeightCellViewController.route: DynamicHeightCellViewController.makeViewController,
+        CircularProgressViewController.route: CircularProgressViewController.makeViewController
     ]
 
     static func resolve(route: String) -> UIViewController {

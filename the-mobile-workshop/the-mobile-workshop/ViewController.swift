@@ -83,4 +83,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         content.imageProperties.tintColor = .white
         return cell
     }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return exploreData.sections[section].title
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = exploreData.sections[indexPath.section].items[indexPath.row]
+        let vc = ExploreRouter.resolve(route: item.route)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
