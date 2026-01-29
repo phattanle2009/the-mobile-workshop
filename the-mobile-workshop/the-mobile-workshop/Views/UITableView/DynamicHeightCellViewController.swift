@@ -9,7 +9,7 @@ import UIKit
 
 final class DynamicHeightCellViewController: UIViewController, ExploreRoutable {
 
-    static let route = "Layout.DynamicHeightCell"
+    static let route = "DynamicHeightCellViewController"
 
     static func makeViewController() -> UIViewController {
         DynamicHeightCellViewController()
