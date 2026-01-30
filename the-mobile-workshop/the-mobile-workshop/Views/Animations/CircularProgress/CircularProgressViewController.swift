@@ -52,7 +52,7 @@ final class CircularProgressViewController: UIViewController, ExploreRoutable {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setTitle("Set Progress", for: .normal)
-        button.styling(bgColor: .systemBlue, cornerRadius: 8.0)
+        button.styling(bgColor: .buttonPrimary, cornerRadius: 8.0)
         button.addTarget(self, action: #selector(didTapSetProgressButton(_:)), for: .touchUpInside)
         return button
     }()
@@ -61,7 +61,7 @@ final class CircularProgressViewController: UIViewController, ExploreRoutable {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setTitle("Reset", for: .normal)
-        button.styling(bgColor: .systemRed, cornerRadius: 8.0)
+        button.styling(bgColor: .buttonSecondary, cornerRadius: 8.0)
         button.addTarget(self, action: #selector(didTapResetProgressButton(_:)), for: .touchUpInside)
         return button
     }()
@@ -81,7 +81,7 @@ final class CircularProgressViewController: UIViewController, ExploreRoutable {
     }
 
     private func setupUI() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .appBackground
         view.addSubview(contentStackView)
         contentStackView.snp.makeConstraints {
             $0.center.equalToSuperview()

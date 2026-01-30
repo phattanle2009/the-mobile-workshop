@@ -8,11 +8,12 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class ExploreViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
-        let table = UITableView(tableStyle: .insetGrouped, separator: .singleLine)
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let table = UITableView(tableStyle: .insetGrouped, separator: .none)
+        table.register(withCellClass: CommontTableViewCell.self)
+        table.registerHeaderFooterView(withViewClass: CommonTableHeaderView.self)
         return table
     }()
     private lazy var searchController = UISearchController(searchResultsController: nil)
@@ -29,8 +30,26 @@ class ViewController: UIViewController {
 
     private func setupNavigation() {
         title = "Explores"
-        view.backgroundColor = .systemGray6
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .appBackground
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appBackground
+        appearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.neutral900
+        ]
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.neutral900
+        ]
+        appearance.backgroundColor = .clear
+
+        let navBar = navigationController?.navigationBar
+        navBar?.standardAppearance = appearance
+        navBar?.scrollEdgeAppearance = appearance
+        navBar?.compactAppearance = appearance
+        navBar?.compactScrollEdgeAppearance = appearance
+        navBar?.prefersLargeTitles = true
+        navBar?.isTranslucent = true
     }
 
     private func setupSearch() {
@@ -58,7 +77,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return exploreData.sections.count
     }
@@ -68,24 +87,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let item = exploreData.sections[indexPath.section].items[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = item.title
-        content.secondaryText = item.description
-        if let icon = item.icon {
-            content.image = UIImage(systemName: icon)
-        }
-        cell.contentConfiguration = content
-        cell.accessoryType = .disclosureIndicator
-        cell.backgroundColor = .systemGray5
-        cell.selectionStyle = .gray
-        content.imageProperties.tintColor = .white
+        let lastIndex = exploreData.sections[indexPath.section].items.count - 1
+        let cell = tableView.dequeueReusableCell(type: CommontTableViewCell.self, for: indexPath)
+        cell.configure(withTitle: item.title, subtitle: item.description, showBottomLine: indexPath.row != lastIndex)
         return cell
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return exploreData.sections[section].title
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(type: CommonTableHeaderView.self)
+        header?.setTitle(exploreData.sections[section].title)
+        return header
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

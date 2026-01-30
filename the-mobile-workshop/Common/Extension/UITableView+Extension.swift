@@ -23,4 +23,25 @@ extension UITableView {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
     }
+
+    func register(withCellClass clz: Swift.AnyClass) {
+        let className = String(describing: clz)
+        self.register(clz, forCellReuseIdentifier: className)
+    }
+
+    func dequeueReusableCell<T: UITableViewCell>(type: T.Type, for indexPath: IndexPath) -> T {
+        let className = String(describing: T.classForCoder())
+        guard let cell = self.dequeueReusableCell(withIdentifier: className, for: indexPath) as? T else {
+            fatalError("cell of [\(className)] is not register as \(className)")
+        }
+        return cell
+    }
+
+    func registerHeaderFooterView<T: UITableViewHeaderFooterView>(withViewClass clz: T.Type) {
+        self.register(clz, forHeaderFooterViewReuseIdentifier: String(describing: clz))
+    }
+
+    func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(type: T.Type) -> T? {
+        return dequeueReusableHeaderFooterView(withIdentifier: String(describing: type)) as? T
+    }
 }
