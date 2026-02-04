@@ -12,7 +12,8 @@ final class ExploreRouter {
 
     private static let registry: [String: () -> UIViewController] = [
         StickyHeaderViewController.route: StickyHeaderViewController.makeViewController,
-        CircularProgressViewController.route: CircularProgressViewController.makeViewController
+        CircularProgressViewController.route: CircularProgressViewController.makeViewController,
+        CustomButtonViewController.route: CustomButtonViewController.makeViewController
     ]
 
     static func resolve(route: String) -> UIViewController {

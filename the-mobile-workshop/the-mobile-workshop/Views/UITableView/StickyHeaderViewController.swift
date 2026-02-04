@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class StickyHeaderViewController: UIViewController, ExploreRoutable {
+final class StickyHeaderViewController: BaseViewController, ExploreRoutable {
 
     static let route = "StickyHeaderViewController"
 

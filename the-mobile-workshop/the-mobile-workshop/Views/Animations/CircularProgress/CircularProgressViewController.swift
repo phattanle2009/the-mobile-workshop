@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class CircularProgressViewController: UIViewController, ExploreRoutable {
+final class CircularProgressViewController: BaseViewController, ExploreRoutable {
 
     static let route = "CircularProgressViewController"
 

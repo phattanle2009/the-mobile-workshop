@@ -32,5 +32,18 @@
                 }
             ]
         },
+        {
+            "id": "uibutton",
+            "title": "UIButton",
+            "description": "A control that executes your custom code in response to user interactions.",
+            "items": [
+                {
+                    "id": "uibutton",
+                    "title": "Custom Buttons",
+                    "description": "A control that executes your custom code in response to user interactions.",
+                    "route": "CustomButtonViewController"
+                }
+            ]
+        },
     ]
 }

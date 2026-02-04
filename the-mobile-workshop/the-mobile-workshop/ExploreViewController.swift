@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ExploreViewController: UIViewController {
+class ExploreViewController: BaseViewController {
 
     private lazy var tableView: UITableView = {
         let table = UITableView(tableStyle: .insetGrouped, separator: .none)
