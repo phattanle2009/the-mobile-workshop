@@ -16,7 +16,7 @@ final class CircularProgressViewController: BaseViewController, ExploreRoutable 
         CircularProgressViewController()
     }
 
-    private lazy var circularProgressView = CircularProgressView(bgColor: UIColor.white.withAlphaComponent(0.5), gradientColors: [.systemPurple, .systemPink])
+    private lazy var circularProgressView = CircularProgressView(bgColor: UIColor.neutral0.withAlphaComponent(0.5), gradientColors: [.systemPurple, .systemPink])
 
     private lazy var hasAnimationLabel = UILabel(text: "Enable animation")
 
@@ -48,21 +48,17 @@ final class CircularProgressViewController: BaseViewController, ExploreRoutable 
         return textField
     }()
 
-    private lazy var setProgressButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .white
-        button.setTitle("Set Progress", for: .normal)
-        button.styling(bgColor: .buttonPrimary, cornerRadius: 8.0)
-        button.addTarget(self, action: #selector(didTapSetProgressButton(_:)), for: .touchUpInside)
+    private lazy var setProgressButton: AppButton = {
+        let button = AppButton(title: "Set Progress") { [weak self] in
+            self?.didTapSetProgressButton()
+        }
         return button
     }()
 
-    private lazy var resetProgressButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .white
-        button.setTitle("Reset", for: .normal)
-        button.styling(bgColor: .buttonSecondary, cornerRadius: 8.0)
-        button.addTarget(self, action: #selector(didTapResetProgressButton(_:)), for: .touchUpInside)
+    private lazy var resetProgressButton: AppButton = {
+        let button = AppButton(title: "Reset", style: .secondary) { [weak self] in
+            self?.didTapResetProgressButton()
+        }
         return button
     }()
 
@@ -97,14 +93,14 @@ final class CircularProgressViewController: BaseViewController, ExploreRoutable 
         }
     }
 
-    @objc private func didTapSetProgressButton(_ sender: UIButton) {
+    private func didTapSetProgressButton() {
         let progressValue = CGFloat(Double(inputValueTextField.text ?? "0") ?? 0)
         let hasAnimation = hasAnimation.isOn
         let timeInterval: TimeInterval = Double(timeIntervalTextField.text ?? "0") ?? 0
         circularProgressView.setProgress(progressValue, animated: hasAnimation, duration: timeInterval)
     }
 
-    @objc private func didTapResetProgressButton(_ sender: UIButton) {
+    private func didTapResetProgressButton() {
         circularProgressView.resetProgress()
     }
 }

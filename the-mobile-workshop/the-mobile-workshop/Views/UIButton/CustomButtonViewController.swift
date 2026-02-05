@@ -25,8 +25,8 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
             let row = initButtonRow(style: style)
             views.append(row)
         }
-        let vStack = VStack(spacing: 4.0, padding: .init(all: 16.0), views: views)
-        vStack.styling(bgColor: .neutral100, cornerRadius: 16.0)
+        let vStack = VStack(spacing: 8.0, padding: .init(all: 16.0), views: views)
+        vStack.styling(bgColor: .neutral200, cornerRadius: 16.0)
         view.addSubview(vStack)
         vStack.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -42,11 +42,18 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
         let button = AppButton(title: title.buttonTitle, style: style, state: .normal, tapState: .highlighted, size: .medium) {
             print("Taped on \(title.title)")
         }
-        button.snp.makeConstraints {
-            $0.width.equalTo(120.0)
+        if style == .floating || style == .icon {
+            button.snp.makeConstraints {
+                $0.size.equalTo(40.0)
+            }
+            button.configure(withTitle: nil, icon: .add)
+        } else {
+            button.snp.makeConstraints {
+                $0.width.equalTo(130.0)
+            }
         }
         let hStack = HStack(alignment: .center, spacing: 16, padding: .init(all: 12.0), views: [label, button])
-        hStack.styling(bgColor: .neutral200, cornerRadius: 8.0)
+        hStack.styling(bgColor: .neutral0, cornerRadius: 12.0)
         return hStack
     }
 

@@ -21,17 +21,34 @@ final class AppButton: UIView {
 
         func getTitleColor() -> UIColor {
             switch self {
-            case .primary: return .white
-            case .secondary: return .neutral900
-            default: return .label
+            case .primary, .destructive: return .neutral0
+            case .secondary: return .buttonSecondaryText
+            case .tertiary, .text: return .buttonTertiaryText
+            default: return .clear
             }
         }
 
         func getBGColor() -> UIColor {
             switch self {
-            case .primary: return .buttonPrimary
-            case .secondary: return .buttonSecondary
+            case .primary: return .buttonPrimaryBG
+            case .secondary: return .buttonSecondaryBG
+            case .tertiary, .text: return .clear
+            case .destructive: return .buttonDestructive
             default: return .systemYellow
+            }
+        }
+
+        func getBorderColor() -> UIColor {
+            switch self {
+            case .tertiary: return .buttonTertiaryBorder
+            default: return .clear
+            }
+        }
+
+        func getBorderWidth() -> CGFloat {
+            switch self {
+            case .tertiary: return 1.0
+            default: return 0.0
             }
         }
     }
@@ -57,10 +74,10 @@ final class AppButton: UIView {
 
         func getFont() -> UIFont {
             switch self {
-            case .extraSmall: return .systemFont(ofSize: 10.0)
-            case .small: return .systemFont(ofSize: 12.0)
-            case .medium: return .systemFont(ofSize: 16.0)
-            case .large: return .systemFont(ofSize: 20.0)
+            case .extraSmall: return .systemFont(ofSize: 10.0, weight: .light)
+            case .small: return .systemFont(ofSize: 12.0, weight: .medium)
+            case .medium: return .systemFont(ofSize: 16.0, weight: .bold)
+            case .large: return .systemFont(ofSize: 20.0, weight: .semibold)
             }
         }
 
@@ -82,12 +99,21 @@ final class AppButton: UIView {
             }
         }
 
-        func getVerticalPadding() -> CGFloat {
+        func getHorizontalPadding() -> CGFloat {
             switch self {
             case .extraSmall: return 8.0
             case .small: return 12.0
             case .medium: return 16.0
             case .large: return 24.0
+            }
+        }
+
+        func getPaddingForIconAndFloating() -> CGFloat {
+            switch self {
+            case .extraSmall: return 2.0
+            case .small: return 4.0
+            case .medium: return 8.0
+            case .large: return 12.0
             }
         }
 
@@ -110,6 +136,15 @@ final class AppButton: UIView {
         }
     }
 
+    struct TapAnimationStep {
+        let duration: TimeInterval
+        let animations: () -> Void
+    }
+
+    struct TapAnimationSequence {
+        let steps: [TapAnimationStep]
+    }
+
     var onPressed: (() -> Void)?
 
     private lazy var titleLabel: UILabel = {
@@ -118,6 +153,7 @@ final class AppButton: UIView {
         label.numberOfLines = 0
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        label.isHidden = style == .floating || style == .icon
         return label
     }()
 
@@ -130,16 +166,20 @@ final class AppButton: UIView {
         return imageView
     }()
 
-    private lazy var contentStackView = HStack(spacing: size.getSpacing(),
-                                               padding: .init(horizontal: size.getVerticalPadding()),
-                                               views: [iconImageView, titleLabel])
+    private lazy var contentStackView: HStack = {
+        let padding: UIEdgeInsets = (style == .floating || style == .icon) ? .init(all: size.getPaddingForIconAndFloating()) : .init(horizontal: size.getHorizontalPadding())
+        let hStack = HStack(spacing: size.getSpacing(),
+                            padding: padding,
+                            views: [iconImageView, titleLabel])
+        return hStack
+    }()
 
+    private var title: String?
+    private var icon: UIImage?
     private var style: Style = .primary
     private var state: State = .normal
     private var tapState: TapState = .highlighted
     private var size: Size = .medium
-    private var title: String?
-    private var icon: UIImage?
 
     init(
         title: String? = nil,
@@ -154,6 +194,8 @@ final class AppButton: UIView {
         self.icon = icon
         self.style = style
         self.state = state
+        self.tapState = tapState
+        self.size = size
         self.onPressed = onPressed
         super.init(frame: .zero)
         setupUI()
@@ -169,13 +211,54 @@ final class AppButton: UIView {
             $0.edges.equalToSuperview()
             $0.height.equalTo(size.getButtonHeight())
         }
-        styling(bgColor: style.getBGColor(), cornerRadius: size.getCornerRadius())
+        styling(bgColor: style.getBGColor(),
+                cornerRadius: size.getCornerRadius(),
+                borderWidth: style.getBorderWidth(),
+                borderColor: style.getBorderColor())
         configure(withTitle: title, icon: icon)
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
 
     @objc private func handleTap() {
-        onPressed?()
+        guard state == .normal else { return }
+        setTapState(.highlighted)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+            self.setTapState(.animation)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.16) {
+            self.setTapState(.none)
+            self.onPressed?()
+        }
+    }
+
+    private func setTapState(_ newState: TapState, animated: Bool = true) {
+        tapState = newState
+        applyTapState(newState, animated: animated)
+    }
+
+    private func applyTapState(_ tapState: TapState, animated: Bool) {
+        let animations = {
+            switch tapState {
+            case .highlighted:
+                self.alpha = 0.85
+                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            case .animation:
+                self.alpha = 0.9
+                self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+            default: return
+            }
+        }
+
+        if animated {
+            UIView.animate(
+                withDuration: 0.12,
+                delay: 0,
+                options: [.curveEaseOut, .allowUserInteraction],
+                animations: animations
+            )
+        } else {
+            animations()
+        }
     }
 
     // MARK: - Public API
