@@ -22,7 +22,7 @@
                     "id": "line_progress",
                     "title": "Line Progress",
                     "description": "Horizontal progress indicator",
-                    "route": "Indicators.linear_progress"
+                    "route": "LineProgressViewController"
                 },
                 {
                     "id": "circular_progress",

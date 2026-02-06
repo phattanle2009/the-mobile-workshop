@@ -14,7 +14,8 @@ final class ExploreRouter {
         StickyHeaderViewController.route: StickyHeaderViewController.makeViewController,
         CircularProgressViewController.route: CircularProgressViewController.makeViewController,
         CustomButtonViewController.route: CustomButtonViewController.makeViewController,
-        CustomButtonViewControllerDetail.route: CustomButtonViewControllerDetail.makeViewController
+        CustomButtonViewControllerDetail.route: CustomButtonViewControllerDetail.makeViewController,
+        LineProgressViewController.route: LineProgressViewController.makeViewController,
     ]
 
     static func resolve<VC: UIViewController & DataInjectable>(route: String, data: VC.DataType) -> VC {
