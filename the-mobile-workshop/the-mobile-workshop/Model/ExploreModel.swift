@@ -24,5 +24,4 @@ struct ExploreItem: Decodable {
     let description: String
     let route: String
     let icon: String?
-//    var accessoryType: UITableViewCell.AccessoryType = .disclosureIndicator
 }

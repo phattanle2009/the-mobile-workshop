@@ -61,9 +61,9 @@ final class AppButton: UIView {
 
     enum TapState {
         case none
-        case highlighted
-        case selected
-        case animation
+        case scale          // scale down / up
+        case alpha          // fade
+        case scaleAndAlpha  // like system button
     }
 
     enum Size {
@@ -92,10 +92,10 @@ final class AppButton: UIView {
 
         func getIconSize() -> CGFloat {
             switch self {
-            case .extraSmall: return 12.0
-            case .small: return 20.0
-            case .medium: return 24.0
-            case .large: return 32.0
+            case .extraSmall: return 8.0
+            case .small: return 12.0
+            case .medium: return 16.0
+            case .large: return 24.0
             }
         }
 
@@ -110,9 +110,9 @@ final class AppButton: UIView {
 
         func getPaddingForIconAndFloating() -> CGFloat {
             switch self {
-            case .extraSmall: return 2.0
-            case .small: return 4.0
-            case .medium: return 8.0
+            case .extraSmall: return 6.0
+            case .small: return 8.0
+            case .medium: return 10.0
             case .large: return 12.0
             }
         }
@@ -134,15 +134,6 @@ final class AppButton: UIView {
             case .large: return 12.0
             }
         }
-    }
-
-    struct TapAnimationStep {
-        let duration: TimeInterval
-        let animations: () -> Void
-    }
-
-    struct TapAnimationSequence {
-        let steps: [TapAnimationStep]
     }
 
     var onPressed: (() -> Void)?
@@ -178,7 +169,7 @@ final class AppButton: UIView {
     private var icon: UIImage?
     private var style: Style = .primary
     private var state: State = .normal
-    private var tapState: TapState = .highlighted
+    private var tapState: TapState = .scale
     private var size: Size = .medium
 
     init(
@@ -186,7 +177,7 @@ final class AppButton: UIView {
         icon: UIImage? = nil,
         style: Style = .primary,
         state: State = .normal,
-        tapState: TapState = .highlighted,
+        tapState: TapState = .scale,
         size: Size = .medium,
         onPressed: (() -> Void)? = nil
     ) {
@@ -207,11 +198,18 @@ final class AppButton: UIView {
 
     private func setupUI() {
         addSubview(contentStackView)
-        contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalTo(size.getButtonHeight())
+        if style == .floating || style == .icon {
+            contentStackView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+                $0.size.equalTo(size.getButtonHeight())
+            }
+        } else {
+            contentStackView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+                $0.height.equalTo(size.getButtonHeight())
+            }
         }
-        styling(bgColor: style.getBGColor(),
+        styling(bgColor: state == .disabled ? style.getBGColor().withAlphaComponent(0.6) : style.getBGColor(),
                 cornerRadius: size.getCornerRadius(),
                 borderWidth: style.getBorderWidth(),
                 borderColor: style.getBorderColor())
@@ -221,43 +219,50 @@ final class AppButton: UIView {
 
     @objc private func handleTap() {
         guard state == .normal else { return }
-        setTapState(.highlighted)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
-            self.setTapState(.animation)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.16) {
-            self.setTapState(.none)
-            self.onPressed?()
-        }
+        animateTapIfNeeded()
+        onPressed?()
     }
 
-    private func setTapState(_ newState: TapState, animated: Bool = true) {
-        tapState = newState
-        applyTapState(newState, animated: animated)
-    }
+    private func animateTapIfNeeded() {
+        guard tapState != .none else { return }
 
-    private func applyTapState(_ tapState: TapState, animated: Bool) {
-        let animations = {
-            switch tapState {
-            case .highlighted:
-                self.alpha = 0.85
-                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            case .animation:
-                self.alpha = 0.9
-                self.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
-            default: return
+        let downTransform: CGAffineTransform
+        let downAlpha: CGFloat
+
+        switch tapState {
+        case .scale:
+            downTransform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            downAlpha = 1.0
+        case .alpha:
+            downTransform = .identity
+            downAlpha = 0.85
+        case .scaleAndAlpha:
+            downTransform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+            downAlpha = 0.9
+        case .none:
+            return
+        }
+
+        // Animate down
+        UIView.animate(
+            withDuration: 0.08,
+            delay: 0,
+            options: [.curveEaseOut, .allowUserInteraction],
+            animations: {
+                self.transform = downTransform
+                self.alpha = downAlpha
             }
-        }
-
-        if animated {
+        ) { _ in
+            // Animate back to normal
             UIView.animate(
                 withDuration: 0.12,
                 delay: 0,
                 options: [.curveEaseOut, .allowUserInteraction],
-                animations: animations
+                animations: {
+                    self.transform = .identity
+                    self.alpha = 1.0
+                }
             )
-        } else {
-            animations()
         }
     }
 

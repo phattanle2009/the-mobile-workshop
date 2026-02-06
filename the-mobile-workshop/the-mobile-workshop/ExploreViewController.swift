@@ -43,13 +43,13 @@ class ExploreViewController: BaseViewController {
         ]
         appearance.backgroundColor = .clear
 
-        let navBar = navigationController?.navigationBar
-        navBar?.standardAppearance = appearance
-        navBar?.scrollEdgeAppearance = appearance
-        navBar?.compactAppearance = appearance
-        navBar?.compactScrollEdgeAppearance = appearance
-        navBar?.prefersLargeTitles = true
-        navBar?.isTranslucent = true
+        let navBar = navController.navigationBar
+        navBar.standardAppearance = appearance
+        navBar.scrollEdgeAppearance = appearance
+        navBar.compactAppearance = appearance
+        navBar.compactScrollEdgeAppearance = appearance
+        navBar.prefersLargeTitles = true
+        navBar.isTranslucent = true
     }
 
     private func setupSearch() {
@@ -101,8 +101,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = exploreData.sections[indexPath.section].items[indexPath.row]
-        let vc = ExploreRouter.resolve(route: item.route)
-        navigationController?.pushViewController(vc, animated: true)
+        let route = exploreData.sections[indexPath.section].items[indexPath.row].route
+        navController.push(to: route)
     }
 }

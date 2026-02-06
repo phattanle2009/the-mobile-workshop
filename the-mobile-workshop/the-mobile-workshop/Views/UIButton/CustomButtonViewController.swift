@@ -20,7 +20,8 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var views: [UIView] = []
+        let centerTitle = UILabel(text: "Button list", font: .systemFont(ofSize: 24.0, weight: .bold), color: .neutral900, numberOfLine: 0)
+        var views: [UIView] = [centerTitle]
         styles.forEach { style in
             let row = initButtonRow(style: style)
             views.append(row)
@@ -29,8 +30,8 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
         vStack.styling(bgColor: .neutral200, cornerRadius: 16.0)
         view.addSubview(vStack)
         vStack.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16.0)
+            $0.top.greaterThanOrEqualTo(view.safeAreaLayoutGuide.snp.top).inset(16.0)
+            $0.leading.trailing.equalToSuperview().inset(16.0)
         }
     }
 
@@ -39,14 +40,14 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
         let label = UILabel(text: title.title, font: .systemFont(ofSize: 18.0), color: .neutral900)
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        let button = AppButton(title: title.buttonTitle, style: style, state: .normal, tapState: .highlighted, size: .medium) {
-            print("Taped on \(title.title)")
+        let button = AppButton(title: title.buttonTitle, style: style, state: .normal, tapState: .scaleAndAlpha, size: .medium) { [weak self] in
+            self?.navController.push(CustomButtonViewControllerDetail.self, data: .init(title: title.title, style: style))
         }
         if style == .floating || style == .icon {
             button.snp.makeConstraints {
-                $0.size.equalTo(40.0)
+                $0.size.equalTo(50.0)
             }
-            button.configure(withTitle: nil, icon: .add)
+            button.configure(withTitle: nil, icon: .icRightArrow)
         } else {
             button.snp.makeConstraints {
                 $0.width.equalTo(130.0)
@@ -59,13 +60,13 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
 
     private func getButtonTitle(style: AppButton.Style) -> (title: String, buttonTitle: String) {
         switch style {
-        case .primary: return ("Primary Button", "Primary")
-        case .secondary: return ("Secondary Button", "Secondary")
-        case .tertiary: return ("Tertiary Button", "Tertiary")
-        case .text: return ("Text Button", "Text")
-        case .destructive: return ("Destructive Button", "Destructive")
-        case .icon: return ("Icon Button", "Icon")
-        case .floating: return ("Floating Button", "Floating")
+        case .primary: return ("Primary Button", "Open")
+        case .secondary: return ("Secondary Button", "Open")
+        case .tertiary: return ("Tertiary Button", "Open")
+        case .text: return ("Text Button", "Open")
+        case .destructive: return ("Destructive Button", "Open")
+        case .icon: return ("Icon Button", "Open")
+        case .floating: return ("Floating Button", "Open")
         }
     }
 }
