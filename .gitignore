@@ -21,6 +21,8 @@ xcuserdata/
 
 ## Xcode workspace
 *.xcworkspace
+!*.xcodeproj/project.xcworkspace/
+!*.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 
 ## Xcode playgounds
 timeline.xctimeline
