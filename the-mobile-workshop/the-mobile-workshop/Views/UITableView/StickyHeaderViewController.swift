@@ -16,7 +16,7 @@ final class StickyHeaderViewController: BaseViewController, ExploreRoutable {
         StickyHeaderViewController()
     }
 
-    private var containerScrollView: UIScrollView!
+    private var containerScrollView = UIScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()

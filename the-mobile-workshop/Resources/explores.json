@@ -45,5 +45,18 @@
                 }
             ]
         },
+        {
+            "id": "swiftui",
+            "title": "SwiftUI",
+            "description": "Learn SwiftUI inside this UIKit workshop app.",
+            "items": [
+                {
+                    "id": "my_swiftui_view",
+                    "title": "My SwiftUI View",
+                    "description": "A SwiftUI screen embedded with UIHostingController.",
+                    "route": "MySwiftUIView"
+                }
+            ]
+        }
     ]
 }
