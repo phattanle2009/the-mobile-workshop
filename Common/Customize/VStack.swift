@@ -1,5 +1,5 @@
 //
-//  VStack.swift
+//  VerticalStack.swift
 //  the-mobile-workshop
 //
 //  Created by Le Tan Phat on 29/1/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class VStack: UIStackView {
+final class VerticalStack: UIStackView {
 
     init(distribution: Distribution = .fill,
          alignment: Alignment = .fill,

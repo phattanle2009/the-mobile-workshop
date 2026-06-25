@@ -30,7 +30,7 @@ final class CustomButtonViewControllerDetail: BaseViewController, ExploreRoutabl
     override func viewDidLoad() {
         super.viewDidLoad()
         title = input?.title
-        let vStack = VStack(alignment: .center, spacing: 16, padding: .init(all: 16.0), views: [])
+        let vStack = VerticalStack(alignment: .center, spacing: 16, padding: .init(all: 16.0), views: [])
         getButtonList().forEach { button in
             vStack.addArrangedSubview(button)
         }

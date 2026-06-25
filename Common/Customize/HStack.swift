@@ -1,5 +1,5 @@
 //
-//  HStack.swift
+//  HorizontalStack.swift
 //  the-mobile-workshop
 //
 //  Created by Le Tan Phat on 29/1/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HStack: UIStackView {
+final class HorizontalStack: UIStackView {
 
     init(distribution: Distribution = .fill,
          alignment: Alignment = .fill,

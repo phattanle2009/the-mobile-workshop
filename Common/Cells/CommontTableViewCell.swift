@@ -14,7 +14,7 @@ class CommontTableViewCell: UITableViewCell {
 
     private lazy var subtitleLabel = UILabel(text: "", font: .systemFont(ofSize: 14.0), color: .neutral500)
 
-    private lazy var labelStackView = VStack(spacing: 4.0, views: [titleLabel, subtitleLabel])
+    private lazy var labelStackView = VerticalStack(spacing: 4.0, views: [titleLabel, subtitleLabel])
 
     private lazy var rightIconView: UIImageView = {
         let imageView = UIImageView(image: .icChevronRight)
@@ -22,7 +22,7 @@ class CommontTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var containerStackView = HStack(alignment: .center, spacing: 8.0, padding: .init(all: 16.0), views: [labelStackView, rightIconView])
+    private lazy var containerStackView = HorizontalStack(alignment: .center, spacing: 8.0, padding: .init(all: 16.0), views: [labelStackView, rightIconView])
 
     private lazy var bottomLine: UIView = {
         let view = UIView()

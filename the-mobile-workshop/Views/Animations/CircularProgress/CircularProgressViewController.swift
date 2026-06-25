@@ -26,7 +26,7 @@ final class CircularProgressViewController: BaseViewController, ExploreRoutable 
         return switchControl
     }()
 
-    private lazy var enableAnimationStack = HStack(alignment: .center, spacing: 16.0, views: [hasAnimationLabel, hasAnimation])
+    private lazy var enableAnimationStack = HorizontalStack(alignment: .center, spacing: 16.0, views: [hasAnimationLabel, hasAnimation])
 
     private lazy var timeIntervalTextField: UITextField = {
         let textField = UITextField()
@@ -62,11 +62,11 @@ final class CircularProgressViewController: BaseViewController, ExploreRoutable 
         return button
     }()
 
-    private lazy var buttonsStack = HStack(distribution: .fillEqually, spacing: 16.0, views: [setProgressButton, resetProgressButton])
+    private lazy var buttonsStack = HorizontalStack(distribution: .fillEqually, spacing: 16.0, views: [setProgressButton, resetProgressButton])
 
     private lazy var contentStackView: UIStackView = {
-        let vStack = VStack(spacing: 16.0, padding: .init(all: 16.0),
-                            views: [circularProgressView, enableAnimationStack, timeIntervalTextField, inputValueTextField, buttonsStack])
+        let vStack = VerticalStack(spacing: 16.0, padding: .init(all: 16.0),
+                                   views: [circularProgressView, enableAnimationStack, timeIntervalTextField, inputValueTextField, buttonsStack])
         vStack.styling(bgColor: .systemGray4, cornerRadius: 16.0)
         return vStack
     }()

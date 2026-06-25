@@ -17,7 +17,7 @@ struct MySwiftUIView: View {
             Color(isDarkMode ? .black : .systemGroupedBackground)
                 .ignoresSafeArea()
 
-            SwiftUI.VStack(spacing: 24) {
+            VStack(spacing: 24) {
                 Image(systemName: isDarkMode ? "moon.stars.fill" : "sun.max.fill")
                     .resizable()
                     .scaledToFit()
@@ -25,7 +25,7 @@ struct MySwiftUIView: View {
                     .foregroundColor(isDarkMode ? .yellow : .orange)
                     .padding(.top, 40)
 
-                SwiftUI.VStack(spacing: 8) {
+                VStack(spacing: 8) {
                     Text("Hi! 👋")
                         .font(.title)
                         .bold()
@@ -38,7 +38,7 @@ struct MySwiftUIView: View {
                         .padding(.horizontal, 32)
                 }
 
-                SwiftUI.HStack(spacing: 16) {
+                HStack(spacing: 16) {
                     Text("Counter:")
                         .font(.headline)
                         .foregroundColor(isDarkMode ? .white : .black)
@@ -59,7 +59,7 @@ struct MySwiftUIView: View {
 
                 Spacer()
 
-                SwiftUI.VStack(spacing: 12) {
+                VStack(spacing: 12) {
                     Button(action: {
                         counter += 1
                     }) {

@@ -157,11 +157,11 @@ final class AppButton: UIView {
         return imageView
     }()
 
-    private lazy var contentStackView: HStack = {
+    private lazy var contentStackView: HorizontalStack = {
         let padding: UIEdgeInsets = (style == .floating || style == .icon) ? .init(all: size.getPaddingForIconAndFloating()) : .init(horizontal: size.getHorizontalPadding())
-        let hStack = HStack(spacing: size.getSpacing(),
-                            padding: padding,
-                            views: [iconImageView, titleLabel])
+        let hStack = HorizontalStack(spacing: size.getSpacing(),
+                                     padding: padding,
+                                     views: [iconImageView, titleLabel])
         return hStack
     }()
 

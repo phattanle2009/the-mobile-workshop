@@ -26,7 +26,7 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
             let row = initButtonRow(style: style)
             views.append(row)
         }
-        let vStack = VStack(spacing: 8.0, padding: .init(all: 16.0), views: views)
+        let vStack = VerticalStack(spacing: 8.0, padding: .init(all: 16.0), views: views)
         vStack.styling(bgColor: .neutral200, cornerRadius: 16.0)
         view.addSubview(vStack)
         vStack.snp.makeConstraints {
@@ -35,7 +35,7 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
         }
     }
 
-    private func initButtonRow(style: AppButton.Style) -> HStack {
+    private func initButtonRow(style: AppButton.Style) -> HorizontalStack {
         let title = getButtonTitle(style: style)
         let label = UILabel(text: title.title, font: .systemFont(ofSize: 18.0), color: .neutral900)
         label.setContentHuggingPriority(.required, for: .horizontal)
@@ -53,7 +53,7 @@ final class CustomButtonViewController: BaseViewController, ExploreRoutable {
                 $0.width.equalTo(130.0)
             }
         }
-        let hStack = HStack(alignment: .center, spacing: 16, padding: .init(all: 12.0), views: [label, button])
+        let hStack = HorizontalStack(alignment: .center, spacing: 16, padding: .init(all: 12.0), views: [label, button])
         hStack.styling(bgColor: .neutral0, cornerRadius: 12.0)
         return hStack
     }
