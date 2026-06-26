@@ -17,6 +17,7 @@ final class ExploreRouter {
         CustomButtonViewControllerDetail.route: CustomButtonViewControllerDetail.makeViewController,
         LineProgressViewController.route: LineProgressViewController.makeViewController,
         MySwiftUIView.route: MySwiftUIView.makeViewController,
+        HomePageSwiftUI.route: HomePageSwiftUI.makeViewController,
     ]
 
     static func resolve<VC: UIViewController & DataInjectable>(route: String, data: VC.DataType) -> VC {

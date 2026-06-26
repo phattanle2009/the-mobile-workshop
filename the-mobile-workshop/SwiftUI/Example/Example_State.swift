@@ -31,18 +31,18 @@ struct ControlButtonsView: View {
     }
 }
 
-struct ParentView: View {
+struct ExampleStateView: View {
     @State private var currentCount: Int = 20
 
     var body: some View {
         VStack(spacing: 40) {
             VStack(spacing: 8) {
-                Text("BÀI TẬP 1")
-                    .font(.caption)
+                Text("Counter")
+                    .font(.largeTitle)
                     .foregroundColor(.gray)
                     .bold()
 
-                Text("Số hiện tại:")
+                Text("Current number:")
                     .font(.headline)
 
                 Text("\(currentCount)")
@@ -54,8 +54,8 @@ struct ParentView: View {
     }
 }
 
-struct ParentView_Previews: PreviewProvider {
+struct ExampleStateView_Previews: PreviewProvider {
     static var previews: some View {
-        ParentView()
+        ExampleStateView()
     }
 }

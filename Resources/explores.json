@@ -55,6 +55,12 @@
                     "title": "My SwiftUI View",
                     "description": "A SwiftUI screen embedded with UIHostingController.",
                     "route": "MySwiftUIView"
+                },
+                {
+                    "id": "swiftui_example",
+                    "title": "SwiftUI Example",
+                    "description": "Learning SwiftUI",
+                    "route": "HomePageSwiftUI"
                 }
             ]
         }
