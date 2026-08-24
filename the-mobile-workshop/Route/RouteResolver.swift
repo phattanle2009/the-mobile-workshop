@@ -11,7 +11,7 @@ import UIKit
 final class ExploreRouter {
 
     private static let registry: [String: () -> UIViewController] = [
-        StickyHeaderViewController.route: StickyHeaderViewController.makeViewController,
+        MyProfileViewController.route: MyProfileViewController.makeViewController,
         CircularProgressViewController.route: CircularProgressViewController.makeViewController,
         CustomButtonViewController.route: CustomButtonViewController.makeViewController,
         CustomButtonViewControllerDetail.route: CustomButtonViewControllerDetail.makeViewController,

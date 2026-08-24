@@ -9,7 +9,7 @@
                     "id": "sticky_header",
                     "title": "Sticky header",
                     "description": "Sticky header while the table view srcoll to top",
-                    "route": "StickyHeaderViewController"
+                    "route": "MyProfileViewController"
                 }
             ]
         },
