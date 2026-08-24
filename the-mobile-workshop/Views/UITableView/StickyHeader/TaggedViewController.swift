@@ -12,6 +12,10 @@ import SnapKit
 class TaggedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SegementSlideContentScrollViewDelegate {
     private let tableView = UITableView(frame: .zero, style: .plain)
 
+    var scrollView: UIScrollView {
+        return tableView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

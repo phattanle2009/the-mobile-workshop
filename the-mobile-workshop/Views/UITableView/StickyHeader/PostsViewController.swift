@@ -12,6 +12,10 @@ import SnapKit
 class PostsViewController: UIViewController, UICollectionViewDataSource, SegementSlideContentScrollViewDelegate {
     private var collectionView: UICollectionView!
 
+    var scrollView: UIScrollView {
+        return collectionView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .neutral0
