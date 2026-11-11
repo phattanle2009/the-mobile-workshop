@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 extension UIViewController {
     func addChild(_ viewController: UIViewController, to containerView: UIView) {
@@ -14,12 +15,9 @@ extension UIViewController {
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         viewController.view.frame = containerView.bounds
         containerView.addSubview(viewController.view)
-        NSLayoutConstraint.activate([
-            viewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            viewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-            viewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-        ])
+        viewController.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         viewController.didMove(toParent: self)
     }
 }

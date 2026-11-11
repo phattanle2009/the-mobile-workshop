@@ -46,6 +46,19 @@
             ]
         },
         {
+            "id": "uipageview",
+            "title": "UIPageView",
+            "description": "Customize UIPageView",
+            "items": [
+                {
+                    "id": "extended_dot_view",
+                    "title": "Extended Dots View",
+                    "description": "Customize dots view below page view",
+                    "route": "ExtendedDotViewController"
+                }
+            ]
+        },
+        {
             "id": "swiftui",
             "title": "SwiftUI",
             "description": "Learn SwiftUI inside this UIKit workshop app.",

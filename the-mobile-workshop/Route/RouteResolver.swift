@@ -18,6 +18,7 @@ final class ExploreRouter {
         LineProgressViewController.route: LineProgressViewController.makeViewController,
         MySwiftUIView.route: MySwiftUIView.makeViewController,
         HomePageSwiftUI.route: HomePageSwiftUI.makeViewController,
+        ExtendedDotViewController.route: ExtendedDotViewController.makeViewController
     ]
 
     static func resolve<VC: UIViewController & DataInjectable>(route: String, data: VC.DataType) -> VC {
