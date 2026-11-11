@@ -19,7 +19,7 @@ extension SegementSlideDefaultSwitcherConfig {
             normalTitleColor: .lightGray,
             selectedTitleColor: .black,
             indicatorWidth: screenWidth / CGFloat(itemCount),
-            indicatorColor: .systemMint
+            indicatorColor: .systemBlue
         )
     }
 }

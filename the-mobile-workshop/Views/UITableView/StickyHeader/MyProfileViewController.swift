@@ -50,7 +50,7 @@ final class MyProfileViewController: BaseViewController, ExploreRoutable {
     lazy var leftStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 4
+        stackView.spacing = 8
         return stackView
     }()
 
@@ -67,6 +67,7 @@ final class MyProfileViewController: BaseViewController, ExploreRoutable {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
         label.textColor = .black
+        label.text = "Workshop User"
         return label
     }()
 
@@ -91,15 +92,19 @@ final class MyProfileViewController: BaseViewController, ExploreRoutable {
         return button
     }()
 
-    override var title: String? {
-        didSet {
-            titleLabel.text = title
+    private lazy var moreButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.tintColor = .textPrimary
+        button.snp.makeConstraints {
+            $0.size.equalTo(28)
         }
-    }
+        button.addTarget(self, action: #selector(tappedMoreButton(_:)), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "My Profile"
         view.backgroundColor = .neutral0
 
         view.addSubview(navigationBar)
@@ -121,6 +126,8 @@ final class MyProfileViewController: BaseViewController, ExploreRoutable {
         addChild(slideVC, to: containerView)
 
         leftStackView.addArrangedSubview(backButton)
+        leftStackView.addArrangedSubview(titleLabel)
+        rightStackView.addArrangedSubview(moreButton)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -135,5 +142,9 @@ final class MyProfileViewController: BaseViewController, ExploreRoutable {
 
     @objc private func tappedBackButton(_ sender: UIButton) {
         navController.popViewController(animated: true)
+    }
+
+    @objc private func tappedMoreButton(_ sender: UIButton) {
+        print("... more button did tap")
     }
 }

@@ -17,24 +17,24 @@ class BaseProfileView: UIView {
         static let actionHeight: CGFloat = 34
     }
 
+    lazy var postsCountInfoView: CountInfoView = {
+        let infoView = CountInfoView()
+        infoView.count = 24
+        infoView.descriptionText = "posts"
+        return infoView
+    }()
+
     lazy var followersCountInfoView: CountInfoView = {
         let infoView = CountInfoView()
-        infoView.count = 128
-        infoView.descriptionText = "Follower"
+        infoView.count = 1
+        infoView.descriptionText = "follower"
         return infoView
     }()
 
     lazy var followsCountInfoView: CountInfoView = {
         let infoView = CountInfoView()
-        infoView.count = 56
-        infoView.descriptionText = "Following"
-        return infoView
-    }()
-
-    lazy var postsCountInfoView: CountInfoView = {
-        let infoView = CountInfoView()
-        infoView.count = 24
-        infoView.descriptionText = "Posts"
+        infoView.count = 796231
+        infoView.descriptionText = "following"
         return infoView
     }()
 
@@ -50,9 +50,33 @@ class BaseProfileView: UIView {
         return stackView
     }()
 
-    private lazy var profileStackView: UIStackView = {
+    private lazy var nameAndCountInfoStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             usernameLabel,
+            countInfoStackView
+        ])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        return stackView
+    }()
+
+    private lazy var profileAndAvatarStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            avatarFrameView,
+            nameAndCountInfoStackView
+        ])
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        return stackView
+    }()
+
+    private lazy var profileStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            profileAndAvatarStackView,
             screenNameLabel,
             selfIntroductionLabel,
             actionStackView
@@ -62,12 +86,6 @@ class BaseProfileView: UIView {
         stackView.alignment = .fill
         stackView.distribution = .fill
         return stackView
-    }()
-
-    private lazy var profileInfoContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
     }()
 
     lazy var avatarFrameView: UIImageView = {
@@ -91,6 +109,14 @@ class BaseProfileView: UIView {
         return label
     }()
 
+    private lazy var workLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Developer"
+        label.textColor = .neutral900
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+
     private lazy var screenNameLabel: UILabel = {
         let label = UILabel()
         label.text = "@mobile_workshop"
@@ -109,11 +135,11 @@ class BaseProfileView: UIView {
     }()
 
     private lazy var editProfileButton: UIButton = {
-        makeActionButton(title: "Edit Profile")
+        makeActionButton(title: "Edit Profile", bgColor: .systemBlue, titleColor: .white)
     }()
 
     private lazy var shareProfileButton: UIButton = {
-        makeActionButton(title: "Share")
+        makeActionButton(title: "Share", bgColor: .neutral100, titleColor: .textPrimary)
     }()
 
     private lazy var actionStackView: UIStackView = {
@@ -139,29 +165,10 @@ class BaseProfileView: UIView {
 
     func commonInit() {
         backgroundColor = .neutral0
-
-        addSubview(avatarFrameView)
-        addSubview(countInfoStackView)
-        addSubview(profileInfoContainerView)
-        profileInfoContainerView.addSubview(profileStackView)
+        addSubview(profileStackView)
 
         avatarFrameView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().offset(Const.horizontalPadding)
             $0.size.equalTo(Const.avatarSize)
-        }
-
-        countInfoStackView.snp.makeConstraints {
-            $0.leading.equalTo(avatarFrameView.snp.trailing).offset(14)
-            $0.trailing.equalToSuperview().offset(-Const.horizontalPadding)
-            $0.centerY.equalTo(avatarFrameView.snp.centerY).offset(-2)
-            $0.height.equalTo(56)
-        }
-
-        profileInfoContainerView.snp.makeConstraints {
-            $0.top.equalTo(avatarFrameView.snp.bottom).offset(14)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-18)
         }
 
         profileStackView.snp.makeConstraints {
@@ -173,12 +180,12 @@ class BaseProfileView: UIView {
         }
     }
 
-    private func makeActionButton(title: String) -> UIButton {
+    private func makeActionButton(title: String, bgColor: UIColor, titleColor: UIColor) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
-        button.setTitleColor(.textPrimary, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 13, weight: .semibold)
-        button.backgroundColor = .neutral100
+        button.backgroundColor = bgColor
         button.layer.cornerRadius = 6
         button.layer.masksToBounds = true
         return button

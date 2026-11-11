@@ -49,9 +49,6 @@ class MyProfileSlideViewController: IconSegementSlideDefaultViewController {
     }()
 
     private var profileTabItems = [SegementSlideTabItem]()
-    private var postTableVC: PostsViewController?
-    private var reelTableVC: ReelsViewController?
-    private var tagTableVC: TaggedViewController?
 
     deinit {
         NotificationCenter.default.removeObserver(self)

@@ -23,7 +23,7 @@ class CountInfoView: UIStackView {
         }
     }
 
-    var countFont = UIFont.systemFont(ofSize: 16.0, weight: .medium) {
+    var countFont = UIFont.systemFont(ofSize: 18.0, weight: .medium) {
         didSet {
             countLabel.font = countFont
         }
@@ -41,7 +41,7 @@ class CountInfoView: UIStackView {
         }
     }
 
-    var descriptionFont = UIFont.systemFont(ofSize: 8.0, weight: .regular) {
+    var descriptionFont = UIFont.systemFont(ofSize: 12.0, weight: .regular) {
         didSet {
             descriptionLabel.font = descriptionFont
         }
@@ -82,7 +82,7 @@ class CountInfoView: UIStackView {
         addArrangedSubview(descriptionLabel)
         axis = .vertical
         spacing = 4.0
-        alignment = .center
+        alignment = .leading
         distribution = .fill
 
         countLabel.snp.makeConstraints {

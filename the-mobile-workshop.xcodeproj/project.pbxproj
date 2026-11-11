@@ -30,11 +30,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DB2A41722F1DCF0B00395B22 /* Common */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Common;
 			sourceTree = "<group>";
 		};
 		DB8109242F1DEF0100A3F748 /* Resources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -199,13 +203,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-the-mobile-workshop/Pods-the-mobile-workshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
